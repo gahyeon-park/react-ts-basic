@@ -12,11 +12,7 @@ function App() {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
-        <AppLink
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <AppLink href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
           Learn React
         </AppLink>
       </Header>
@@ -26,7 +22,7 @@ function App() {
 
 const Container = styled.div`
   text-align: center;
-`
+`;
 
 const Header = styled.header`
   background-color: #282c34;
@@ -37,7 +33,7 @@ const Header = styled.header`
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-`
+`;
 const spinAnimation = keyframes`
   from {
     transform: rotate(0deg);
@@ -45,7 +41,7 @@ const spinAnimation = keyframes`
   to {
     transform: rotate(360deg);
   }
-`
+`;
 
 const AppLogo = styled.img`
   height: 40vmin;
@@ -54,10 +50,10 @@ const AppLogo = styled.img`
   @media (prefers-reduced-motion: no-preference) {
     animation: ${spinAnimation} infinite 20s linear;
   }
-`
+`;
 
 const AppLink = styled.a`
   color: #61dafb;
-`
+`;
 
 export default App;
