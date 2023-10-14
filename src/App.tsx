@@ -1,7 +1,8 @@
-import { Component, useState } from "react";
+import { Component, ErrorInfo, useState } from "react";
 import styled from '@emotion/styled';
 import { Button } from "components/Button";
 import { Label } from "components/Label";
+import { IScriptSnapshot } from "typescript";
 
 // function App() {
 //   const [counter, setCounter] = useState(0);
@@ -69,6 +70,55 @@ export class App extends Component<AppProps, AppState> {
         </Contents>
       </Container>
     )
+  }
+
+  static getDerivedStateFromProps(nextProps: AppProps, prevState: AppState) {
+    console.log("getDerivedStateFromProps");
+    console.log("nextProps", nextProps);
+    console.log("prevState", prevState);
+
+    return null;
+  }
+
+  componentDidMount(): void {
+    console.log("componentDidMount");
+  }
+
+  getSnapshotBeforeUpdate(prevProps: Readonly<AppProps>, prevState: Readonly<AppState>) {
+    console.log("getSnapshotBeforeUpdate");
+    console.log("prevProps", prevProps);
+    console.log("prevState", prevState);
+
+    // getSnapshotBeforeUpdate함수의 반환값은 componentDidUpdate의 세번째 매개변수(snapshot)로 전달된다.
+    return {
+      testData: true
+    }
+  }
+
+  componentDidUpdate(prevProps: Readonly<AppProps>, prevState: Readonly<AppState>, snapshot?: IScriptSnapshot): void {
+    console.log("componentDidUpdate");
+    console.log("prevProps", prevProps);
+    console.log("prevState", prevState);
+    console.log("snapshot", snapshot);
+  }
+
+  shouldComponentUpdate(nextProps: Readonly<AppProps>, nextState: Readonly<AppState>, nextContext: any): boolean {
+    console.log("shouldComponentUpdate");
+    console.log("nextProps", nextProps);
+    console.log("nextState", nextState);
+
+    // false를 반환하면 컴포넌트의 리렌더링을 수행하지 않도록 막는다.
+    return true;
+  }
+
+  componentWillUnmount(): void {
+    console.log("componentWillUnmount");
+  }
+
+  componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
+    console.log("componentDidCatch");
+    console.log("error: ", error);
+    console.log("errorInfo: ", errorInfo);
   }
 }
 
