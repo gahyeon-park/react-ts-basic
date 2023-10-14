@@ -1,3 +1,4 @@
+import { Component } from "react";
 import styled from "@emotion/styled";
 
 interface ButtonProps {
@@ -5,8 +6,17 @@ interface ButtonProps {
   readonly onClick?: () => void;
 }
 
-export const Button = ({ label, onClick }: ButtonProps) => {
-  return <Container onClick={onClick}>{label}</Container>
+// 함수형
+// export const Button = ({ label, onClick }: ButtonProps) => {
+//   return <Container onClick={onClick}>{label}</Container>
+// }
+
+// 클래스형 : export class Button extends Component<propsGenericType, stateGenericType>{}
+export class Button extends Component<ButtonProps> {
+  render() {
+    const { label, onClick } = this.props;
+    return <Container onClick={onClick}>{label}</Container>
+  }
 }
 
 const Container = styled.button`
