@@ -1,38 +1,35 @@
-import { Component } from "react";
 import styled from "@emotion/styled";
 
 interface ButtonProps {
   readonly label: string;
+  readonly color?: string;
   readonly onClick?: () => void;
 }
 
-// 함수형
-// export const Button = ({ label, onClick }: ButtonProps) => {
-//   return <Container onClick={onClick}>{label}</Container>
+// interface ContainerProps {
+//   readonly color: string;
 // }
 
-// 클래스형 : export class Button extends Component<propsGenericType, stateGenericType>{}
-export class Button extends Component<ButtonProps> {
-  render() {
-    const { label, onClick } = this.props;
-    return <Container onClick={onClick}>{label}</Container>
-  }
-}
-
-const Container = styled.button`
-  border: 0;
+const Container = styled.button<{ color: string }>`
+  border: none;
   color: #fff;
-  background-color: #ff5722;
+  background-color: ${(props) => props.color};
   cursor: pointer;
   padding: 8px 16px;
   border-radius: 4px;
 
   &:hover {
-    background-color: #ff5722;
-    opacity: 0.8;
+    background-color: ${(props) => props.color};
+    opacity: .8;
   }
 
   &:active {
-    box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 5px 5px 18px rgba(0, 0, 0, .2);
   }
-`;
+`
+
+export function Button({ label, color = "#ff5722", onClick }: ButtonProps) {
+  return (
+    <Container color={color} onClick={onClick}>{label}</Container>
+  )
+}
