@@ -2,10 +2,10 @@ import styled from "@emotion/styled";
 import { Title } from "components/Title";
 import { TodoList } from "components/TodoList";
 
-interface DataViewProps {
-  readonly todoList: string[];
-  readonly onDelete?: (todo: string) => void;
-}
+// interface DataViewProps {
+//   readonly todoList: string[];
+//   readonly onDelete?: (todo: string) => void;
+// }
 
 const Container = styled.div`
   display: flex;
@@ -17,11 +17,11 @@ const Container = styled.div`
   border-radius: 8px;
 `
 
-export const DataView = ({ todoList, onDelete }: DataViewProps) => {
+export const DataView = () => {
   return (
     <Container>
       <Title label="TodoList" />
-      <TodoList todoList={todoList} onDelete={onDelete} />
+      <TodoList />
     </Container>
   )
 }
