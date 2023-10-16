@@ -1,44 +1,38 @@
-import styled from '@emotion/styled';
-import { DataView } from "pages/DataView";
-// import { InputContainer } from "components/InputContainer";
-import { ToDoListContextProvider } from "contexts/ToDoList";
-import { Routes, Route } from "react-router-dom";
-import { TodoInput } from 'pages/TodoInput';
-import { Header } from "components/Header";
+import { useEffect, useState } from "react";
+import styled from "@emotion/styled";
+import { Header } from "components/BlogHeader";
+import { BlogPost } from "components/BlogPost";
+import mockPosts from "mock/posts.json";
 
 const Container = styled.div`
 height: 100vh;
 display: flex;
 flex-direction: column;
 align-items: center;
-justify-content: center;
 background-color: #eee;
+overflow: scroll;
 `;
 
-const NotFound = styled.div`
-  text-align: center;
-`
-
-
+interface PostI {
+  id: number;
+  userId: number;
+  title: string;
+  body: string;
+}
 
 function App() {
+  const [posts, setPosts] = useState<PostI[]>([]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setPosts(mockPosts);
+    }, 1000);
+  }, []);
+
   return (
     <Container>
-      <ToDoListContextProvider>
-        <Header />
-        <Routes>
-          <Route path="/" element={<DataView />} />
-          <Route path="/add" element={<TodoInput />} />
-          <Route
-            path="*"
-            element={
-              <NotFound>
-                404<br /> NOT FOUND
-              </NotFound>
-            }
-          />
-        </Routes>
-      </ToDoListContextProvider>
+      <Header />
+      {posts?.map(post => <BlogPost key={post.id} title={post.title} body={post.body} />)}
     </Container>
   )
 }
